@@ -7,29 +7,27 @@ from nltk.tokenize import sent_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
 import re
 from nltk.corpus import stopwords
-import nltk.data
-from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
+#import nltk.data
+#from sklearn.pipeline import Pipeline
+#from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 from sklearn.multioutput import MultiOutputClassifier
-from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier, AdaBoostClassifier
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.metrics import confusion_matrix
+#from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier, AdaBoostClassifier
+#from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+#from sklearn.base import BaseEstimator, TransformerMixin
+#from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.metrics import classification_report
-#from sklearn.metrics import multilabel_confusion_matrix
-from sklearn.metrics import classification_report, accuracy_score
-import numpy as np
-#from sklearn.metrics import multilabel_confusion_matrix
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('stopwords')
+#from sklearn.metrics import classification_report
+#from sklearn.metrics import classification_report, accuracy_score
+#import numpy as np
+#nltk.download('punkt')
+#nltk.download('wordnet')
+#nltk.download('averaged_perceptron_tagger')
+#nltk.download('stopwords')
 from icecream import ic
 from datetime import datetime
 import pickle
@@ -42,7 +40,7 @@ def time_format():
 #Configs
 ic.configureOutput(prefix=time_format,includeContext=True)
 
-def load_data(database_filepath,DEBUG=0):
+def load_data(database_filepath,DEBUG=1):
     conn = sqlite3.connect(database_filepath)
     cur = conn.cursor()
     ic(cur)

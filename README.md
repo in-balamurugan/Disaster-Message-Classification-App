@@ -1,4 +1,8 @@
 # Disaster Response Pipeline Project
+A machine learning pipeline to categorize emergency messages based on the needs communicated by the sender and served in a web app built with flask. 
+
+### Folders:
+
 
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
@@ -12,4 +16,5 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
+
 # Disaster-Message-Classification-App
