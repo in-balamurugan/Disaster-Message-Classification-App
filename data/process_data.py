@@ -6,6 +6,9 @@ from sqlalchemy import create_engine
 
 
 def time_format():
+    """"
+     return current time
+     """
     return f'{datetime.now()}|>'
 
 
@@ -41,8 +44,8 @@ def clean_data(df):
 
     categories = df['categories'].str.split(';', expand=True)
     row = categories.iloc[1]
-    category_colnames = list(map(lambda x: x[:-2], row))
-    categories.columns = category_colnames
+    category_columns = list(map(lambda x: x[:-2], row))
+    categories.columns = category_columns
     for column in categories:
         # set each value to be the last character of the string
         categories[column] = categories[column].str.strip().str[-1]

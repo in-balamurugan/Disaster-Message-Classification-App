@@ -1,4 +1,0 @@
-nltk.stem
-nltk.tokenize
-flask
-sqlalchemy

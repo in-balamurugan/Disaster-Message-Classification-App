@@ -26,11 +26,11 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/disaster_response_db.db')
+engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('messages', engine)
 
 # load model
-model = joblib.load("../models/classifier.pkl")
+model = joblib.load("models/classifier.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -42,7 +42,15 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
-    
+
+    # Top 5 classes
+    top_class_count = df.drop(['id', 'message', 'original', 'genre'], axis=1).sum().sort_values(ascending=False).head(5)
+    top_class_names = list(top_class_count.index)[0:4]
+
+    # Bottom 5 classes
+    bottom_class_count = df.drop(['id', 'message', 'original', 'genre'], axis=1).sum().sort_values(ascending=True).head(5)
+    bottom_class_names = list(bottom_class_count.index)[0:4]
+
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
@@ -61,6 +69,42 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=bottom_class_names,
+                    y=bottom_class_count
+                )
+            ],
+
+            'layout': {
+                'title': 'Bottom Classes by count',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Class"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=top_class_names,
+                    y=top_class_count
+                )
+            ],
+
+            'layout': {
+                'title': 'Top Classes by count',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Class"
                 }
             }
         }
