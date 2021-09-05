@@ -136,7 +136,7 @@ def go():
     )
 
 def main():
-    app.run(host='0.0.0.0', port=3002, debug=True)
+    app.run(host='https://fathomless-thicket-28863.herokuapp.com/', debug=True)
 
 if __name__ == '__main__':
     main()
