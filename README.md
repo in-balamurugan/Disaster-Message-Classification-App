@@ -7,6 +7,7 @@ A machine learning pipeline to categorize emergency messages based on the needs 
 2. [Dependecies](#Dependecies)
 3. [Instructions](#Instructions)
 4. [Web App Screen shots](#App)
+5. [Metrics](#Metrics)
 
 
 <a name="Folders"></a>
@@ -24,22 +25,22 @@ A machine learning pipeline to categorize emergency messages based on the needs 
 |--models<br>
 |    &nbsp; &nbsp;&nbsp;  -- train_classifier.py <br>
 |    &nbsp; &nbsp;&nbsp;  -- classifier.pkl  # saved model <br>
-|    &nbsp; &nbsp;&nbsp;  -- classifier.pkl  # saved model <br>
-|    &nbsp; &nbsp;&nbsp;  -- classifier.pkl  # saved model <br>
-|    &nbsp; &nbsp;&nbsp;  -- classifier.pkl  # saved model <br>
+|    &nbsp; &nbsp;&nbsp;  -- X_test.csv  #test data set <br>
+|    &nbsp; &nbsp;&nbsp;  -- Y_prediction.csv # predicted class <br>
+|    &nbsp; &nbsp;&nbsp;  -- Y_test.csv # actual class <br>
 |--screen_shots<br>
 --&nbsp; README.md<br>
-
+--&nbsp; Requirements.txt<br>
 
 <a name="Dependecies"></a>
 ### Package Dependecies:
-* nltk
-* flask
-* sqlalchemy
-* sklearn
-* joblib
-* icecream
-* pandas
+- nltk
+- flask
+- sqlalchemy
+- sklearn
+- joblib
+- icecream
+- pandas
 
 
 <a name="Instructions"></a>
@@ -59,12 +60,19 @@ A machine learning pipeline to categorize emergency messages based on the needs 
 
 Welcome screen
 
-<img src="/screen_shots/welcome.png" alt="welcome" width="80%" height="80%"/>
+<img src="screen_shots/welcome.png" alt="welcome" width="80%" height="80%"/>
 
-Enter message classification
-<img src="/screen_shots/enter_message.png" alt="enter message" width="80%" height="80%"/>
+Charts<br>
+<img src="screen_shots/chart1.png" alt="enter message" width="80%" height="80%"/>
+<img src="screen_shots/chart2.png" alt="enter message" width="80%" height="80%"/>
+<img src="screen_shots/chart3.png" alt="enter message" width="80%" height="80%"/>
 
-Classification results page
-<img src="/screen_shots/results.png" alt="results" width="80%" height="80%"/>
+<br>Classification results page<br>
+<img src="screen_shots/result.png" alt="results" width="80%" height="80%"/>
 
-
+<a name="Metrics"></a>
+### Metrics:
+* Execution time: 48 minutes for classifier
+* precision: 0.8868079851821362
+* recall: 0.8376749611197511
+* f1: 0.6628273389112246

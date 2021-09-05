@@ -1,5 +1,7 @@
 # import libraries
 import sys
+
+import nltk
 import pandas as pd
 import sqlite3
 from nltk.tokenize import word_tokenize
@@ -20,6 +22,10 @@ from sklearn.metrics import precision_score, recall_score
 from sklearn.metrics import f1_score
 import numpy as np
 
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('stopwords')
 
 def time_format():
     return f'{datetime.now()}|>'
@@ -123,7 +129,7 @@ def build_model():
 
     ic(parameters)
 
-    cross_valid = KFold(10, True, 1)
+    cross_valid = KFold(2, True, 1)
     cv = GridSearchCV(pipeline, param_grid=parameters, cv=cross_valid, scoring='f1_micro',
                       verbose=0)
     ic(cv)
@@ -163,7 +169,7 @@ def main():
 
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
-        x, y, category_names = load_data(database_filepath)
+        x, y, category_names = load_data(database_filepath,DEBUG=0)
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
         print('Building model...')
