@@ -18,7 +18,7 @@ from icecream import ic
 from datetime import datetime
 import pickle
 import xgboost as xgb
-from sklearn.metrics import precision_score, recall_score
+from sklearn.metrics import precision_score, recall_score, classification_report
 from sklearn.metrics import f1_score
 import numpy as np
 
@@ -27,7 +27,12 @@ nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('stopwords')
 
+
 def time_format():
+    """
+    Return date and time to be printed in console
+    :return: date time
+    """
     return f'{datetime.now()}|>'
 
 
@@ -136,7 +141,7 @@ def build_model():
     return cv
 
 
-def evaluate_model(model, X_test, Y_test, category_names):
+def evaluate_model(model, x_test, y_test, category_names):
     """"
     Evaluates model based on accuracy,f1, recall, precision
     Parameters:
@@ -144,16 +149,19 @@ def evaluate_model(model, X_test, Y_test, category_names):
     Returns:
     cv(model)
     """
-    Y_pred = model.predict(X_test)
-    accuracy = (Y_pred == Y_test).mean()
+    y_pred = model.predict(x_test)
+    accuracy = (y_pred == y_test).mean()
 
-    pd.DataFrame(X_test).to_csv("models/X_test.csv")
-    pd.DataFrame(Y_pred).to_csv("models/Y_pred.csv")
-    pd.DataFrame(Y_test).to_csv("models/Y_test.csv")
+    pd.DataFrame(x_test).to_csv("models/x_test.csv")
+    pd.DataFrame(y_pred).to_csv("models/y_pred.csv")
+    pd.DataFrame(y_test).to_csv("models/y_test.csv")
 
-    precision = precision_score(Y_pred, Y_test, average='micro', labels=np.unique(Y_pred))
-    recall = recall_score(Y_pred, Y_test, average='micro', labels=np.unique(Y_pred))
-    f1 = f1_score(Y_pred, Y_test, average='micro')
+    classification = classification_report(y_test, y_pred, target_names=category_names, output_dict=True)
+    pd.DataFrame(classification).transpose().to_csv("models/classification_report.csv")
+
+    precision = precision_score(y_pred, y_test, average='micro', labels=np.unique(y_pred))
+    recall = recall_score(y_pred, y_test, average='micro', labels=np.unique(y_pred))
+    f1 = f1_score(y_pred, y_test, average='micro')
 
     ic(precision)
     ic(recall)
@@ -161,6 +169,12 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
+    """"
+    Persists the model object  to pickle file
+    Parameters:model object, model file path
+    Returns: none
+    -
+    """
     pickle.dump(model, open(model_filepath, "wb"))
 
 
@@ -169,7 +183,7 @@ def main():
 
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
-        x, y, category_names = load_data(database_filepath,DEBUG=0)
+        x, y, category_names = load_data(database_filepath, DEBUG=1)
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
         print('Building model...')
