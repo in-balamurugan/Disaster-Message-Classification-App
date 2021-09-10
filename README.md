@@ -1,5 +1,10 @@
 # Disaster Response Pipeline Project
-A machine learning pipeline to categorize emergency messages based on the needs communicated by the sender and served in a web app built with flask. 
+A Flask Web app to classify texts from disaster response times into a 36 fixed set of categories.
+Dataset is used from Figure 8.
+Project is part of Udacity Data Scientist nanodegree program.
+
+
+
 
 ## Table of Contents
 
