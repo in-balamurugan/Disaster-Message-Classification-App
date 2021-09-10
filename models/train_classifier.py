@@ -157,15 +157,16 @@ def evaluate_model(model, x_test, y_test, category_names):
     pd.DataFrame(y_test).to_csv("models/y_test.csv")
 
     classification = classification_report(y_test, y_pred, target_names=category_names, output_dict=True)
+    ic(classification)
     pd.DataFrame(classification).transpose().to_csv("models/classification_report.csv")
 
     precision = precision_score(y_pred, y_test, average='micro', labels=np.unique(y_pred))
     recall = recall_score(y_pred, y_test, average='micro', labels=np.unique(y_pred))
     f1 = f1_score(y_pred, y_test, average='micro')
 
-    ic(precision)
-    ic(recall)
-    ic(f1)
+    #ic(precision)
+    #ic(recall)
+    #ic(f1)
 
 
 def save_model(model, model_filepath):

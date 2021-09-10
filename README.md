@@ -1,10 +1,6 @@
 # Disaster Response Pipeline Project
-A Flask Web app to classify texts from disaster response times into a 36 fixed set of categories.
-Dataset is used from Figure 8.
-Project is part of Udacity Data Scientist nanodegree program.
-
-
-
+A Flask Web app to classify texts from disaster response times into a 36 fixed set of categories.Dataset is used from Figure 8.Project is part of Udacity Data Scientist nanodegree program.In disaster time, this app will help categorize disaster messages so that you can send the messages to an appropriate disaster relief agency.
+An emergency worker can input a new message in this web app and get classification results in several categories.The web app will also display visualizations of the data.
 
 ## Table of Contents
 
